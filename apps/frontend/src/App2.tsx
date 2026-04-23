@@ -13,12 +13,14 @@ import {
 import { Button } from "@/components/ui/button"
 
 export default function App() {
+  console.log("BACKEND URL:", import.meta.env.VITE_BACKEND_URL)
+  console.log("CHECK:", import.meta.env.VITE_CHECK)
+
   const [users, setUsers] = useState<User[]>([])
 
   const loadUsers = async () => {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users`)
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users?key=${import.meta.env.VITE_API_KEY}`)
     const data: ApiResponse<User[]> = await res.json()
-
     setUsers(data.data)
   }
 
@@ -28,14 +30,12 @@ export default function App() {
 
   return (
     <div className="flex justify-center p-10">
-
       <Card className="w-150">
         <CardHeader>
           <CardTitle>User List</CardTitle>
         </CardHeader>
 
         <CardContent>
-
           <Button onClick={loadUsers} className="mb-4">
             Refresh
           </Button>
@@ -58,12 +58,9 @@ export default function App() {
                 </TableRow>
               ))}
             </TableBody>
-
           </Table>
-
         </CardContent>
       </Card>
-
     </div>
   )
 }
