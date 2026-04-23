@@ -18,7 +18,7 @@
 
 ## Report Bug
 
-### ❌ Cost Explorer — Access Denied (Fase 2)
+### 1. Cost Explorer — Access Denied (Fase 2)
 
 **Pesan Error:**
 > *"You are not authorized to perform this operation."*
@@ -34,7 +34,8 @@
 4. Halaman terbuka namun langsung menampilkan popup *Access Denied* dan semua data (Total cost, Average monthly cost, Service count) kosong menampilkan tanda `–`.
 
 **Screenshot:**
-![Cost Explorer Access Denied](./screenshots/cost-explorer-access-denied.png)
+![Cost Explorer Access Denied](<img width="1600" height="887" alt="b9588597-4492-4052-a79b-ee71f305c18a" src="https://github.com/user-attachments/assets/d9446706-287b-4276-abd4-9f05c240ba0a" />
+)
 
 **Solusi yang Sudah Dicoba:**
 - Memastikan IAM User sudah terdaftar di group `grp-budget`.
@@ -44,7 +45,7 @@
 
 ---
 
-### ❌ CloudFront — Web Distribution Quota Limit (Fase 5)
+### 2. CloudFront — Web Distribution Quota Limit (Fase 5)
 
 **Pesan Error:**
 > *"Limit increase request — Service: Amazon CloudFront, Region: US East (Northern Virginia), Limit name: Web distributions per AWS account, New limit value: 560"*
@@ -60,7 +61,8 @@
 5. Mendapat email konfirmasi otomatis dari AWS Support pada **Thu Apr 23 2026, 19:31:32 GMT+0700** bahwa request sedang dalam proses review.
 
 **Screenshot:**
-![CloudFront Quota Limit](./screenshots/cloudfront-quota-limit.png)
+![CloudFront Quota Limit](<img width="1078" height="481" alt="45c35217-8640-4c08-82e6-f559209031f0" src="https://github.com/user-attachments/assets/54a90f02-8661-4c1c-bb0c-d73ca93baab9" />
+)
 
 **Solusi yang Sudah Dicoba:**
 - Mengajukan **Service Quota increase request** ke AWS Support untuk CloudFront Web distributions di region US East (Northern Virginia).
