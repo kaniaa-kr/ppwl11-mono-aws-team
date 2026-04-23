@@ -34,7 +34,7 @@
 4. Halaman terbuka namun langsung menampilkan popup *Access Denied* dan semua data (Total cost, Average monthly cost, Service count) kosong menampilkan tanda `–`.
 
 **Screenshot:**
-![Cost Explorer Access Denied](<img width="1600" height="887" alt="WhatsApp Image 2026-04-23 at 21 54 39" src="https://github.com/user-attachments/assets/31d28679-6329-40ed-9109-8885b03f7fe9" />)
+![Cost Explorer Access Denied](https://drive.google.com/file/d/1RyqUfpjMzeJO2Z_73LUrYztBJARqVygs/view?usp=drive_link)
 
 **Solusi yang Sudah Dicoba:**
 - Memastikan IAM User sudah terdaftar di group `grp-budget`.
@@ -60,8 +60,7 @@
 5. Mendapat email konfirmasi otomatis dari AWS Support pada **Thu Apr 23 2026, 19:31:32 GMT+0700** bahwa request sedang dalam proses review.
 
 **Screenshot:**
-![CloudFront Quota Limit](<img width="1078" height="481" alt="45c35217-8640-4c08-82e6-f559209031f0" src="https://github.com/user-attachments/assets/54a90f02-8661-4c1c-bb0c-d73ca93baab9" />
-)
+![CloudFront Quota Limit](https://drive.google.com/file/d/1PR-OpqjRnyxs5wwdxfYkTTSoUMYq9SG2/view?usp=drive_link)
 
 **Solusi yang Sudah Dicoba:**
 - Mengajukan **Service Quota increase request** ke AWS Support untuk CloudFront Web distributions di region US East (Northern Virginia).
