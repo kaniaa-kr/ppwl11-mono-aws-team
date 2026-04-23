@@ -34,8 +34,7 @@
 4. Halaman terbuka namun langsung menampilkan popup *Access Denied* dan semua data (Total cost, Average monthly cost, Service count) kosong menampilkan tanda `–`.
 
 **Screenshot:**
-![Cost Explorer Access Denied](<img width="1600" height="887" alt="b9588597-4492-4052-a79b-ee71f305c18a" src="https://github.com/user-attachments/assets/d9446706-287b-4276-abd4-9f05c240ba0a" />
-)
+![Cost Explorer Access Denied](<img width="1600" height="887" alt="WhatsApp Image 2026-04-23 at 21 54 39" src="https://github.com/user-attachments/assets/31d28679-6329-40ed-9109-8885b03f7fe9" />)
 
 **Solusi yang Sudah Dicoba:**
 - Memastikan IAM User sudah terdaftar di group `grp-budget`.
