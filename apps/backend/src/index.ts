@@ -7,8 +7,7 @@ import type { ApiResponse, HealthCheck, User } from "shared";
 import type { DbClient } from "./types";
 
 // Auth middleware — reusable di semua route yang butuh autentikasi
-const makeAuthMiddleware =
-  (jwtInstance: any) =>
+const makeAuthMiddleware = (jwtInstance: any) =>
   async ({ headers, set }: any) => {
     const authHeader = headers.authorization;
     if (!authHeader) {
@@ -37,22 +36,25 @@ export const createApp = (getPrisma: () => DbClient) => {
         name: "jwt",
         secret: process.env.JWT_SECRET!,
         exp: "1d",
-      }),
+      })
     )
 
     // Middleware akses kontrol untuk /users
     .onRequest(({ request, set }) => {
       const url = new URL(request.url);
+      console.log(`[DEBUG] [${request.method}] ${url.pathname}`);
+
+      // Lewati preflight OPTIONS
+      if (request.method === "OPTIONS") return;
+
       if (!url.pathname.startsWith("/users")) return;
 
       const origin = request.headers.get("origin");
       const frontendUrl = process.env.FRONTEND_URL ?? "http://localhost:5173";
       const key = url.searchParams.get("key");
 
-      // Izinkan dari frontend resmi
       if (origin === frontendUrl) return;
 
-      // Selain itu wajib pakai API_KEY
       if (key !== process.env.API_KEY) {
         set.status = 401;
         return { message: "Unauthorized: Access denied without valid API Key" };
@@ -60,13 +62,10 @@ export const createApp = (getPrisma: () => DbClient) => {
     })
 
     // Health check
-    .get(
-      "/",
-      (): ApiResponse<HealthCheck> => ({
-        data: { status: "ok" },
-        message: "server running",
-      }),
-    )
+    .get("/", (): ApiResponse<HealthCheck> => ({
+      data: { status: "ok" },
+      message: "server running",
+    }))
 
     // Users
     .get("/users", async () => {
@@ -118,28 +117,24 @@ export const createApp = (getPrisma: () => DbClient) => {
     })
 
     // Classroom — submissions per course
-    .get(
-      "/classroom/courses/:courseId/submissions",
-      async ({ params, headers, jwt, set }) => {
-        const auth = makeAuthMiddleware(jwt);
-        const user = await auth({ headers, set });
-        if (!user) return;
+    .get("/classroom/courses/:courseId/submissions", async ({ params, headers, jwt, set }) => {
+      const auth = makeAuthMiddleware(jwt);
+      const user = await auth({ headers, set });
+      if (!user) return;
 
-        const { courseId } = params;
-        const [courseWorks, submissions] = await Promise.all([
-          getCourseWorks(user.access_token, courseId),
-          getSubmissions(user.access_token, courseId),
-        ]);
+      const { courseId } = params;
+      const [courseWorks, submissions] = await Promise.all([
+        getCourseWorks(user.access_token, courseId),
+        getSubmissions(user.access_token, courseId),
+      ]);
 
-        return {
-          data: courseWorks.map((cw) => ({
-            courseWork: cw,
-            submission:
-              submissions.find((s) => s.courseWorkId === cw.id) ?? null,
-          })),
-        };
-      },
-    );
+      return {
+        data: courseWorks.map((cw) => ({
+          courseWork: cw,
+          submission: submissions.find((s) => s.courseWorkId === cw.id) ?? null,
+        })),
+      };
+    });
 
   return app;
 };
